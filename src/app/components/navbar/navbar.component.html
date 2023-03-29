@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <div class="navbar__left">
+    <ul class="navbar__list">
+      <li class="navbar__item">
+        <a routerLink="/" routerLinkActive="active" class="navbar__link">Inicio</a>
+      </li>
+      <li class="navbar__item">
+        <a routerLink="/exchanges" routerLinkActive="active" class="navbar__link">Historial</a>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar__right">
+    <button class="navbar__logout" (click)="logout()">Cerrar Sesión</button>
+  </div>
+</nav>

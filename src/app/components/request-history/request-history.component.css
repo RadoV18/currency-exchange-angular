@@ -1,0 +1,103 @@
+.container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.container form {
+    display: flex;
+    width: 100%;
+}
+
+.search__container {
+  margin: 20px 0;
+}
+
+.container form .input__container {
+    margin-right: 20px;
+}
+
+.container form .input__container input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.container form .input__container select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.submit button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.submit button:hover {
+    background: #16447b;
+    color: #fff;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.table tr {
+  background-color: #fefefe;
+}
+
+.table thead {
+  background-color: #f2f2f2;
+}
+
+.table td {
+    height: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    width: 20%;
+}
+
+.table th {
+  background-color: #16447b;
+  color: #fff;
+}
+
+.data__footer {
+  height: 30px;
+  padding: 10px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  background: #fefefe;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.data__footer span {
+  margin-right: 10px;
+}
+
+.data__footer .pagination button {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+

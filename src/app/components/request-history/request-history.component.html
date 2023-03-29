@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="search__container">
+    <form [formGroup]="filterForm" (ngSubmit)="filterData()">
+      <div class="input__container">
+        <label for="from">Moneda origen</label>
+        <input type="text" id="from" formControlName="from">
+      </div>
+      <div class="input__container">
+        <label for="to">Moneda destino</label>
+        <input type="text" id="to" formControlName="to">
+      </div>
+      <div class="input__container">
+        <label for="sortBy">Ordenar por</label>
+        <select id="sortBy" formControlName="sortBy">
+          <option value=""></option>
+          <option value="requestDate">Fecha</option>
+          <option value="amount">Monto</option>
+          <option value="result">Resultado</option>
+        </select>
+      </div>
+      <div class="input__container">
+        <label for="sortOrder">Orden</label>
+        <select id="sortOrder" formControlName="sortDirection">
+          <option value=""></option>
+          <option value="asc">Ascendente</option>
+          <option value="desc">Descendente</option>
+        </select>
+      </div>
+      <div class="submit">
+        <button type="submit">Filtrar</button>
+      </div>
+    </form>
+  </div>
+  <table class="table">
+    <thead class="table__title">
+      <tr>
+        <th>Moneda Origen</th>
+        <th>Monto</th>
+        <th>Moneda Destino</th>
+        <th>Resultado</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of response.data">
+        <td>{{item.query.from}}</td>
+        <td>{{item.query.amount}}</td>
+        <td>{{item.query.to}}</td>
+        <td>{{item.result}}</td>
+        <td>{{item.info.timestamp | date: 'dd-MM-yyyy HH:mm:ss'}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+  <div class="data__footer">
+    <span>Mostrando {{response.offset + 1}} - {{response.total < response.offset + response.limit ? response.total : response.offset + response.limit}} de {{response.total}} registros</span>
+    <div class="pagination">
+      <button [disabled]="response.offset === 0" (click)="previousPage()"> Anterior</button>
+      <button [disabled]="response.offset + response.limit >= response.total" (click)="nextPage()"> Siguiente</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="form__container">
+  <form class="form" [formGroup]="exchangeForm" (ngSubmit)="submit()">
+    <div class="input__box">
+      <div class="input__container">
+        <label class="input__label" for="from">Moneda origen</label>
+        <input class="input" type="text" id="from" formControlName="from">
+      </div>
+      <div class="input__container">
+        <label class="input__label" for="to">Moneda destino</label>
+        <input class="input" type="text" id="to" formControlName="to">
+      </div>
+      <div class="input__container">
+        <label class="input__label" for="amount">Monto</label>
+        <input class="input" type="text" id="amount" formControlName="amount">
+      </div>
+    </div>
+
+    <ul class="results__list" *ngIf="response != undefined ">
+      <li>
+        <span>Resultado:</span><span>{{ response.result }}</span>
+      </li>
+      <li>
+        <span>Fecha:</span><span>{{ response.info.timestamp | date: 'dd-MM-yyyy HH:mm:ss' }}</span>
+      </li>
+    </ul>
+    <span *ngIf="errorMessage != undefined">{{errorMessage}}</span>
+    <div class="form__submit">
+        <button type="submit">Convertir</button>
+    </div>
+  </form>
+</div>
