@@ -22,8 +22,16 @@ export class ExchangeFormComponent {
     });
   }
 
-  submit() {
+  onOptionSelect(value: string) {
+    this.exchangeForm.patchValue({
+      serviceId: value
+    });
+  }
+
+  submit(serviceId : number) {
+    console.log(this.exchangeForm);
     this.currencyService.convertCurrency(
+      serviceId,
       this.exchangeForm.value.from,
       this.exchangeForm.value.to,
       this.exchangeForm.value.amount

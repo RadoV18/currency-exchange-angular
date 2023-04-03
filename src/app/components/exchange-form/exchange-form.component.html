@@ -1,5 +1,5 @@
 <div class="form__container">
-  <form class="form" [formGroup]="exchangeForm" (ngSubmit)="submit()">
+  <form class="form" [formGroup]="exchangeForm">
     <div class="input__box">
       <div class="input__container">
         <label class="input__label" for="from">Moneda origen</label>
@@ -25,7 +25,8 @@
     </ul>
     <span *ngIf="errorMessage != undefined">{{errorMessage}}</span>
     <div class="form__submit">
-        <button type="submit">Convertir</button>
+        <button type="button" (click)="submit(1)">Convertir con API Layer</button>
+        <button type="button" (click)="submit(2)">Convertir con ExchangeRates API</button>
     </div>
   </form>
 </div>

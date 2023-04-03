@@ -13,9 +13,9 @@ export class CurrencyService {
 
   constructor(private http: HttpClient) { }
 
-  public convertCurrency(from: String, to: String, amount: number): Observable<ResponseCurrencyDto<ExchangeDto>> {
+  public convertCurrency(serviceId: number, from: String, to: String, amount: number): Observable<ResponseCurrencyDto<ExchangeDto>> {
     return this.http.get<ResponseCurrencyDto<ExchangeDto>>(
-      `${environment.API_URL}/api/v1/conversions?from=${from}&to=${to}&amount=${amount}`
+      `${environment.API_URL}/api/v1/conversions?serviceId=${serviceId}&from=${from}&to=${to}&amount=${amount}`
     );
   }
 
