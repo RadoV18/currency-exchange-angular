@@ -13,8 +13,10 @@ export class RequestHistoryComponent {
 
   response: PaginatedDto<ExchangeDto>;
   pages: number;
-  currentPage: number = 1;
+  currentPage: number = 0;
+  size: number;
   filterForm: FormGroup;
+  query: Map<string, string>;
 
   constructor(private formBuilder: FormBuilder, private currencyService: CurrencyService) {
     this.filterForm = this.formBuilder.group({
@@ -26,7 +28,7 @@ export class RequestHistoryComponent {
   }
 
   ngOnInit(): void {
-    this.getPaginatedConversions(10, 0);
+    this.getPaginatedConversions(0, 10);
   }
 
   filterData(): void {
@@ -38,7 +40,9 @@ export class RequestHistoryComponent {
         query.set(key, value);
       }
     });
-    this.getPaginatedConversions(this.response.limit, (this.currentPage - 1) * this.response.limit, query);
+    this.query = query;
+    this.currentPage = 0;
+    this.getPaginatedConversions(this.currentPage, this.size);
   }
 
   nextPage() {
@@ -51,21 +55,21 @@ export class RequestHistoryComponent {
 
   goToPage(page: number) {
     this.currentPage = page;
-    this.getPaginatedConversions(this.response.limit, (this.currentPage - 1) * this.response.limit);
+    this.getPaginatedConversions(this.currentPage, this.size);
   }
 
-  getPaginatedConversions(limit: number, offset: number, query?: Map<string, string>) {
-    this.currencyService.getPaginatedConversions(limit, offset, query).subscribe({
+  getPaginatedConversions(page: number, size: number) {
+    this.currencyService.getPaginatedConversions(page, size, this.query).subscribe({
       next: (response) => {
         console.log(response.data);
         this.response = response.data;
         // add empty rows to the table if the number of rows is less than the limit
-        if(this.response.data.length < this.response.limit) {
-          for(let i = this.response.data.length; i < this.response.limit; i++) {
-            this.response.data.push({} as ExchangeDto);
+        if(this.response.content.length < this.response.size) {
+          for(let i = this.response.content.length; i < this.response.size; i++) {
+            this.response.content.push({} as ExchangeDto);
           }
         }
-        this.pages = Math.ceil(this.response.total / this.response.limit);
+        this.pages = this.response.totalPages;
       },
       error: (error) => {
         console.log(error);

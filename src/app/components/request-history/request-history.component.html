@@ -42,7 +42,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of response.data">
+      <tr *ngFor="let item of response.content">
         <td>{{item.query.from}}</td>
         <td>{{item.query.amount}}</td>
         <td>{{item.query.to}}</td>
@@ -53,10 +53,10 @@
     </tbody>
   </table>
   <div class="data__footer">
-    <span>Mostrando {{response.offset + 1}} - {{response.total < response.offset + response.limit ? response.total : response.offset + response.limit}} de {{response.total}} registros</span>
+    <span>Mostrando {{response.pageable.offset + 1}} - {{ response.numberOfElements + response.pageable.offset}} de {{response.totalElements}} registros</span>
     <div class="pagination">
-      <button [disabled]="response.offset === 0" (click)="previousPage()"> Anterior</button>
-      <button [disabled]="response.offset + response.limit >= response.total" (click)="nextPage()"> Siguiente</button>
+      <button [disabled]="response.pageable.offset === 0" (click)="previousPage()"> Anterior</button>
+      <button [disabled]="response.pageable.offset + response.size >= response.totalElements" (click)="nextPage()"> Siguiente</button>
     </div>
   </div>
 </div>

@@ -19,9 +19,9 @@ export class CurrencyService {
     );
   }
 
-  public getPaginatedConversions(limit: number, offset: number, query?: Map<string, string>):
+  public getPaginatedConversions(page: number | null, size: number | null, query?: Map<string, string>):
     Observable<ResponseCurrencyDto<PaginatedDto<ExchangeDto>>> {
-      let url: string = `${environment.API_URL}/api/v1/conversions/all?limit=${limit}&offset=${offset}`;
+      let url: string = `${environment.API_URL}/api/v1/conversions/all?page=${page || 0}&size=${size || 10}`;
       if (query) {
         query.forEach((value: string, key: string) => {
           if(value) {
